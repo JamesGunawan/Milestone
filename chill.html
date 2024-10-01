@@ -1,0 +1,66 @@
+<html> <!-- demo of the page/how to use is in README-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="style.css" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="background-wrapper"> <!-- Background wrapper added -->
+        <header>
+            <div class="center">
+                <div>
+                    <details class="options">
+                    <summary id="settingsdrop">  
+                        <img id="settings" class="clickables" src="https://cdn-icons-png.flaticon.com/512/3592/3592953.png">
+                        <!-- uses an image as the clickable to drop down-->
+                    </summary> 
+                    <!-- settings/features for the user-->
+                    <p class="droplist" id="switchmode">Switch to Light mode</p> 
+                    <p class="droplist" id="autoplay"> Video Autoplay : Off</p>
+                </details>
+                </div>
+                <form id="searchform"></form>
+                <!-- creates a search bar and a button to click on so the user can search (doesn't actually work yet because it is to complex to do for now)-->
+                <input type="text" placeholder="Search" id="searchbar">
+                <a href="futurefeature.html"><button id="searchbutton"><img src="search.png" alt="search" id="searchimg"></button></a>
+            </div>
+            
+            <div class="center">
+                <details>
+                        <summary id="hdropbutton"> Categories ></summary> <!-- shows more categories when clicked-->
+                    <div id="hlist"> <!-- makes the display horizontal instead of vertical-->
+                        <!-- when clicked takes the user to the designated video for that category-->
+                        <div class="hitems"><a href="horror.html" class="categories">Horror</a></div>
+                        <div class="hitems"><a href="survival.html" class="categories">Survival</a></div>
+                        <div class="hitems"><a href="index.html" class="categories">Simulator</a></div>
+                </details>
+                    </div>  `   `
+        </header>
+        <br><br><br><br>
+        <main>
+            <div>
+            <h1 class="center">Uno &#x1F0CF;</h1>
+            </div>
+                <div class="center">
+                    <iframe width="400" height="250" 
+                    src="https://www.youtube.com/embed/jTXoRCGRRGo?autoplay=0&mute=0" id="video"
+                    data-video-id="jTXoRCGRRGo" 
+                    title="Supermarket Simulator" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    <!-- displays the video usingn an embed from youtube.com-->
+                </div>
+                <div>
+                <details>
+                    <summary id="description">Description ></summary> <!-- shows more description when clicked-->
+                    <p class="center"> In this video Markiplier played Uno</p>
+                </details>  
+                </div>
+        </main>
+    </div>
+    <footer>
+        <script src="script.js"></script>
+    </footer>
+</body>
+</html>

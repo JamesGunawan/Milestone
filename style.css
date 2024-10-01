@@ -1,0 +1,151 @@
+html{
+    background-color: black;
+    color: white;
+    border: solid;
+    border-color: gold;
+    border-width: 5px;
+}
+a.light-mode {
+    color: #000;
+}
+a.dark-mode {
+    color: #fff;
+}
+.center{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+header{
+}
+#searchbar{
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    background-color: rgb(26, 24, 24);
+    color: white;
+    border: transparent;
+    width: 650px;
+    height: 35px;
+    margin-left: 5px;
+}
+#searchimg{
+    background-color: transparent;
+    width: 35px;
+    height: 35px;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    transition: ease 0.5s;
+}
+#searchimg:hover{
+transform: scale(1.5);
+}
+#searchimgborder{
+    width: 35px;
+    height: 35px;
+    background-color: rgb(160, 160, 160);
+}
+#searchbutton{
+    border: transparent;
+}
+#settings{
+    width: 35px;
+    height: 35px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform 0.5s ease;
+}
+#settings:active{
+    transform: rotate(360deg);
+}
+.options{
+    left: 5;
+    top: 5;
+    position: absolute;
+}
+.clickables:hover{
+    cursor: pointer;
+}
+#settingsdrop{
+    list-style-type: none;
+    margin-top: 50px;
+    margin-left: 10px;
+    text-align: center;
+}
+.droplist{
+    margin-left: 5px;
+    cursor: pointer;
+}
+#hdropbutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    font-family: verdana;
+}
+#hdropbutton:hover{
+    cursor: pointer;
+}
+#hlist{ 
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.hitems{
+    margin-left: 15px;
+    background-color: gray;
+    border-radius: 5px;
+    padding: 5px;
+}
+.hitems:hover{
+    cursor: pointer ;
+}
+#video{
+    border: solid;
+    border-color: cyan;
+    border-radius: 10px;
+    border-width: px;
+}
+#description{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    font-family: verdana;
+}
+#description:hover{
+    cursor: pointer;
+    color: rgb(57, 148, 118);
+}   
+.categories{
+    color: white;
+    text-decoration: none;
+}
+/* Add a background image with reduced opacity but without affecting page content */
+.background-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+/* Pseudo-element for background image */
+.background-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -8;
+    left: -8;
+    padding: 10px;
+    height: 100%;
+    width: 100%;
+    background-image: url("background.jpg"); /* Replace with your image */
+    background-size: cover;
+    background-position: center;
+    z-index: -1; /* Keeps the image behind the content */
+    opacity: 0.25; /* Adjust this value for transparency, e.g. 0.75 for 75% opacity */
+}
+
+/* Ensure the rest of the content is on top of the background */
+header, main, footer {
+    position: relative;
+    z-index: 1;
+}
