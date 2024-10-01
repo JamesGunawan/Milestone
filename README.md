@@ -7,3 +7,5 @@ you can type into the search bar and click search (it doesn't actually do anythi
 click on "Categories" to display more video categories
 
 click on "Description" to display the description
+
+you can scroll inside the "Recommended Videos" container to show more videos

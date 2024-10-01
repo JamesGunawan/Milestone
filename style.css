@@ -4,20 +4,27 @@ html{
     border: solid;
     border-color: gold;
     border-width: 5px;
+    height: 1000px;
+    width: auto;
 }
+
+/* anchor class for js to change the categories link color */
 a.light-mode {
     color: #000;
 }
+
 a.dark-mode {
     color: #fff;
 }
+
+/* self explanatory */
 .center{
     align-items: center;
     justify-content: center;
     display: flex;
 }
-header{
-}
+
+/* modifies the look for the top/main search bar */
 #searchbar{
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
@@ -28,6 +35,8 @@ header{
     height: 35px;
     margin-left: 5px;
 }
+
+/* modifies the magnifying glass image next to the search bar */
 #searchimg{
     background-color: transparent;
     width: 35px;
@@ -37,17 +46,17 @@ header{
     cursor: pointer;
     transition: ease 0.5s;
 }
+/* animation for image when hovered*/
 #searchimg:hover{
 transform: scale(1.5);
 }
-#searchimgborder{
-    width: 35px;
-    height: 35px;
-    background-color: rgb(160, 160, 160);
-}
+
+/* makes the button background behind the image transparent */
 #searchbutton{
     border: transparent;
 }
+
+/* modifies the cogwheel image top left */
 #settings{
     width: 35px;
     height: 35px;
@@ -56,27 +65,38 @@ transform: scale(1.5);
     position: absolute;
     transition: transform 0.5s ease;
 }
+/* adds animation when clicked */
 #settings:active{
     transform: rotate(360deg);
 }
+
+/* positions the cogwheel at the top left */
 .options{
     left: 5;
     top: 5;
     position: absolute;
 }
+
+/* class for changing cursor to pointer */
 .clickables:hover{
     cursor: pointer;
 }
+
+/* styles the cogwheel */
 #settingsdrop{
     list-style-type: none;
     margin-top: 50px;
     margin-left: 10px;
     text-align: center;
 }
+
+/* changes cursor to pointer when hovering over the features */
 .droplist{
     margin-left: 5px;
     cursor: pointer;
 }
+
+/* positions the text on the center */
 #hdropbutton{
     display: flex;
     align-items: center;
@@ -84,51 +104,63 @@ transform: scale(1.5);
     margin-bottom: 10px;
     font-family: verdana;
 }
+/* changes the cursor */
 #hdropbutton:hover{
     cursor: pointer;
 }
+
+/* positions the droplist of categories on the center */
 #hlist{ 
     align-items: center;
     justify-content: center;
     display: flex;
 }
+
+/* styles the cursor background and border */
 .hitems{
     margin-left: 15px;
     background-color: gray;
     border-radius: 5px;
     padding: 5px;
 }
+/* changes the cursor */
 .hitems:hover{
     cursor: pointer ;
 }
+
+/* border for main video */
 #video{
     border: solid;
     border-color: cyan;
     border-radius: 10px;
-    border-width: px;
 }
+
+/* changes the font and aligns the description on the center */
 #description{
     align-items: center;
     justify-content: center;
     display: flex;
     font-family: verdana;
 }
+/* changes the cursor */
 #description:hover{
     cursor: pointer;
     color: rgb(57, 148, 118);
 }   
+
+/* hides the link underline */
 .categories{
     color: white;
     text-decoration: none;
 }
-/* Add a background image with reduced opacity but without affecting page content */
+
+/* background image for the entire page */
 .background-wrapper {
     position: relative;
     height: 100%;
     width: 100%;
 }
-
-/* Pseudo-element for background image */
+/* ensures the background is behind all the elements */
 .background-wrapper::before {
     content: '';
     position: absolute;
@@ -137,15 +169,76 @@ transform: scale(1.5);
     padding: 10px;
     height: 100%;
     width: 100%;
-    background-image: url("background.jpg"); /* Replace with your image */
+    background-image: url("background.jpg"); 
     background-size: cover;
     background-position: center;
     z-index: -1; /* Keeps the image behind the content */
-    opacity: 0.25; /* Adjust this value for transparency, e.g. 0.75 for 75% opacity */
+    opacity: 0.25; 
 }
-
-/* Ensure the rest of the content is on top of the background */
+/* ensures the rest of the content is on top of the background */
 header, main, footer {
     position: relative;
     z-index: 1;
+
+/* container for recommended videos*/
 }
+#morevidscontainer {
+    width: 500px;              
+    height: 225px;             
+    overflow-x: auto;          /* Allow horizontal scrolling */
+    overflow-y: hidden;        /* Disable vertical scrolling */
+    border: 5px solid black; 
+    white-space: nowrap;       /* Ensure horizontal layout */
+    padding: 10px;             
+    border-radius: 5px;
+}
+
+/* Custom scrollbar styling */
+#morevidscontainer::-webkit-scrollbar {
+    height: 5px;
+}
+/* Color for the scroll thumb */
+#morevidscontainer::-webkit-scrollbar-thumb {
+    background-color: #b9b9b9; 
+    border-radius: 10px;  
+}
+ /* Color for the scrollbar track */
+#morevidscontainer::-webkit-scrollbar-track {
+    background-color: gray;
+}
+
+/* change thumb color on hover */
+#morevidscontainer::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
+/* adds gap and makes the display of the recommnended videos horizontal */
+.morevids {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+/* container for each of the videos */
+.morevideos {
+    width: 225px;              
+    height: 100%;              
+    flex-shrink: 0;            /* Prevent the video items from shrinking */
+    text-align: center;         
+    margin-left: -9px;
+}
+
+/* controlls the sizes for the image and the border */
+.morevideos img {
+    width: 100%;               /* Make the thumbnail image take the full width of its container */
+    height: auto;              /* Maintain aspect ratio */
+    border-radius: 10px;        
+    cursor: pointer;           
+}
+
+/* changes the font family for the recommended video titles */
+.moretitle {
+    margin-top: 5px;
+    font-family: 'Roboto', sans-serif;
+}
+
