@@ -4,133 +4,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Ocean Theme fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
+    <!-- Forest Theme fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400&family=Merriweather:wght@400&display=swap" rel="stylesheet">
+    <!-- Halloween Theme fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap" rel="stylesheet">
+    <!-- Winter Theme fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Snowburst+One&family=Dancing+Script&display=swap" rel="stylesheet">
+
     <title>Document</title>
 </head>
 <body>
-    <!-- Background class for reduced opacity and placed behing all of the main items -->
+    <!-- Background class for reduced opacity and placed behind all of the main items -->
     <div class="background-wrapper"> 
-        <!-- Header that includes features for the user and a search bar with a button-->
+        <!-- Header that includes features for the user and a search bar with a button -->
         <header>
-            <div class="center">
-                <div>
-                    <details class="options">
-                        <summary id="settingsdrop">
-                            <!-- Uses an image as the clickable to drop down-->  
-                            <img id="settings" class="clickables" src="https://cdn-icons-png.flaticon.com/512/3592/3592953.png">
-                        </summary> 
-                        <!-- Settings/features for the user-->
-                        <p class="droplist" id="switchmode">Switch to Light mode</p> 
-                        <p class="droplist" id="autoplay"> Video Autoplay : Off</p>
-                    </details>
+            <div class="header-container">
+                <div class="center">
+                    <div class="themes-dropdown">
+                        <button class="themes-dropdown-button" id="dropdownButton">Themes Option</button>
+                        <div id="dropdownContent" style="display: none; max-height: 150px; overflow-y: auto;">
+                            <a href="#" class="theme-option" data-theme="default">Default</a>
+                            <a href="#" class="theme-option" data-theme="ocean">Ocean</a>
+                            <a href="#" class="theme-option" data-theme="forest">Forest</a>
+                            <a href="#" class="theme-option" data-theme="halloween">Halloween</a>
+                            <a href="#" class="theme-option" data-theme="winter">Winter</a>
+                        </div>
+                    </div>                    
+                    <div>
+                        <details class="options">
+                            <summary id="settingsdrop">
+                                <!-- Uses an image as the clickable to drop down -->  
+                                <img id="settings" src="https://cdn-icons-png.flaticon.com/512/3592/3592953.png">
+                            </summary> 
+                            <!-- Settings/features for the user -->
+                            <p class="droplist" id="switchmode">Switch to Dark mode</p> 
+                            <p class="droplist" id="autoplay"> Video Autoplay : Off</p>
+                        </details>
+                    </div>
+                    
+                    
+                    <form id="searchform"></form>
+                    <!-- Creates a search bar and a button to click on so the user can search (doesn't actually work yet because it is too complex to do for now) -->
+                    <input type="text" placeholder="Search" id="searchbar">
+                    <a href="futurefeature.html">
+                        <button id="searchbutton">
+                            <img src="search.png" alt="search" id="searchimg">
+                        </button>
+                    </a>
                 </div>
-                <form id="searchform"></form>
-                <!-- Creates a search bar and a button to click on so the user can search (doesn't actually work yet because it is to complex to do for now)-->
-                <input type="text" placeholder="Search" id="searchbar">
-                <a href="futurefeature.html"><button id="searchbutton"><img src="search.png" alt="search" id="searchimg"></button></a>
-            </div>
-            
-            <div class="center">
-                <details>
-                    <!-- Shows more categories when clicked-->
-                    <summary id="hdropbutton"> Categories ></summary>
-                        <!-- A class that makes the display horizontal instead of vertical-->
+                
+                <div class="center">
+                    <details>
+                        <!-- Shows more categories when clicked -->
+                        <summary id="hdropbutton"> Categories ></summary>
+                        <!-- A class that makes the display horizontal instead of vertical -->
                         <div id="hlist">
-                            <!-- When clicked takes the user to another html file for that video category-->
+                            <!-- When clicked takes the user to another html file for that video category -->
                             <div class="hitems"><a href="horror.html" class="categories">Horror</a></div>
                             <div class="hitems"><a href="survival.html" class="categories">Survival</a></div>
                             <div class="hitems"><a href="chill.html" class="categories">Chill</a></div>
-                </details>
                         </div>
+                    </details>
+                </div>
+            </div>
         </header>
 
-        <br><br><br><br>
-        <!-- Main content area-->
+        <br><br><br><br><br><br><br>
+        
+        <!-- Main content area -->
         <main>
-            <div>
-                <!--Main video title-->
-                <h1 class="center" id="maintitle">Supermarket Simulator &#128722;</h1>
-            </div>
-                <div class="center">
-
-                    <!-- Main video player-->
-                    <iframe width="400" height="250" 
+                <!-- Main video title -->
+                <h1 id="maintitle">Supermarket Simulator &#128722;</h1>
+            <div class="center">
+                <!-- Main video player -->
+                <iframe width="400" height="250" 
                     src="https://www.youtube.com/embed/CpM9VKsWiJw?autoplay=0&mute=0" 
                     id="video"
                     data-video-id="CpM9VKsWiJw" 
                     title="Supermarket Simulator" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+            </div>
 
-                <!-- Main video description-->
-                <div>
+            <!-- Main video description -->
+            <div>
                 <details>
-                    <!--Shows the description when clicked-->
+                    <!-- Shows the description when clicked -->
                     <summary id="description">Description ></summary>
                     <p class="center" id="maindescription"> In this video Markiplier played Supermarket Simulator</p>
                 </details>  
-                </div>
-                
-                <br><br><br>
-                
-                <!-- Recommended videos area-->
-                <div class="center">
-                    <h1 class="moretitle">Recommended Videos</h1>
-                </div>
+            </div>
+            
+            <br><br><br>
+            
+            <!-- Recommended videos area -->
+            <div class="center">
+                <h1 class="moretitle">Recommended Videos</h1>
+            </div>
 
-                <!-- Recommended videos container-->
-                <div class="center">
-                    <div id="morevidscontainer">
-                        <div class="morevids">
+            <!-- Recommended videos container -->
+            <div class="center">
+                <div id="morevidscontainer">
+                    <div class="morevids">
 
-                            <!-- Video 1-->
-                            <div class="morevideos">
-                                <a href="#" data-video-id="Fy7MFivzd1k">
-                                    <img class="morevideosimg" src="https://img.youtube.com/vi/Fy7MFivzd1k/0.jpg" alt="Video Thumbnail 1">
-                                </a>
-                                <h4 class="moretitle">The Joy of Creation: Part 1</h4>  
-                            </div>
-                            
-                            <!-- Video 2-->
-                            <div class="morevideos">
-                                <a href="#" data-video-id="gd_5Q3C6YHI">
-                                    <img class="morevideosimg" src="https://img.youtube.com/vi/gd_5Q3C6YHI/0.jpg" alt="Video Thumbnail 2">
-                                </a>
-                                <h4 class="moretitle">GETTING OVER IT... TOGETHER <br> | Chained Together</h4>  
-                            </div>
+                        <!-- Video 1 -->
+                        <div class="morevideos">
+                            <a href="#" data-video-id="Fy7MFivzd1k">
+                                <img class="morevideosimg" src="https://img.youtube.com/vi/Fy7MFivzd1k/0.jpg" alt="Video Thumbnail 1">
+                            </a>
+                            <h4 class="moretitle">The Joy of Creation: Part 1</h4>  
+                        </div>
+                        
+                        <!-- Video 2 -->
+                        <div class="morevideos">
+                            <a href="#" data-video-id="gd_5Q3C6YHI">
+                                <img class="morevideosimg" src="https://img.youtube.com/vi/gd_5Q3C6YHI/0.jpg" alt="Video Thumbnail 2">
+                            </a>
+                            <h4 class="moretitle">GETTING OVER IT... TOGETHER <br> | Chained Together</h4>  
+                        </div>
 
-                            <!-- Video 3-->
-                            <div class="morevideos">
-                                <a href="#" data-video-id="hGIG6hKEHI0">
-                                    <img class="morevideosimg" src="https://img.youtube.com/vi/hGIG6hKEHI0/0.jpg" alt="Video Thumbnail 3">
-                                </a>
-                                <h4 class="moretitle">Buckshot Roulette | <br> VIDEO ENDS WHEN I DIE</h4>
-                            </div>
+                        <!-- Video 3 -->
+                        <div class="morevideos">
+                            <a href="#" data-video-id="hGIG6hKEHI0">
+                                <img class="morevideosimg" src="https://img.youtube.com/vi/hGIG6hKEHI0/0.jpg" alt="Video Thumbnail 3">
+                            </a>
+                            <h4 class="moretitle">Buckshot Roulette | <br> VIDEO ENDS WHEN I DIE</h4>
+                        </div>
 
-                            <!-- Video 4-->
-                            <div class="morevideos">
-                                <a href="#" data-video-id="MbeikmppDoA">
-                                    <img class="morevideosimg" src="https://img.youtube.com/vi/MbeikmppDoA/0.jpg" alt="Video Thumbnail 3">
-                                </a>
-                                <h4 class="moretitle">Supermarket Simulator - Part 2</h4>
-                            </div>
+                        <!-- Video 4 -->
+                        <div class="morevideos">
+                            <a href="#" data-video-id="MbeikmppDoA">
+                                <img class="morevideosimg" src="https://img.youtube.com/vi/MbeikmppDoA/0.jpg" alt="Video Thumbnail 3">
+                            </a>
+                            <h4 class="moretitle">Supermarket Simulator - Part 2</h4>
+                        </div>
 
-                            <!-- Video 5-->
-                            <div class="morevideos">
-                                <a href="#" data-video-id="Dsb98qeeFUs">
-                                    <img class="morevideosimg" src="https://img.youtube.com/vi/Dsb98qeeFUs/0.jpg" alt="Video Thumbnail 3">
-                                </a>
-                                <h4 class="moretitle">Sons of the Forest: Solo - Part 1</h4>
-                            </div>
+                        <!-- Video 5 -->
+                        <div class="morevideos">
+                            <a href="#" data-video-id="Dsb98qeeFUs">
+                                <img class="morevideosimg" src="https://img.youtube.com/vi/Dsb98qeeFUs/0.jpg" alt="Video Thumbnail 3">
+                            </a>
+                            <h4 class="moretitle">Sons of the Forest: Solo - Part 1</h4>
                         </div>
                     </div>
                 </div>
+            </div>
         </main>
     </div>
+    
     <footer>
         <script src="script.js"></script>
     </footer>
 </body>
 </html>
-

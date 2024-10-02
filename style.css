@@ -1,6 +1,6 @@
 html{
-    background-color: black;
-    color: white;
+    background-color: white;
+    color: black;
     border: solid;
     border-color: gold;
     border-width: 5px;
@@ -8,7 +8,18 @@ html{
     width: auto;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+}
 /* anchor class for js to change the categories link color */
+
+/* styles the maintitle font */
+#maintitle {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+}
+
 a.light-mode {
     color: #000;
 }
@@ -77,24 +88,70 @@ transform: scale(1.5);
     position: absolute;
 }
 
-/* class for changing cursor to pointer */
-.clickables:hover{
-    cursor: pointer;
-}
-
 /* styles the cogwheel */
 #settingsdrop{
     list-style-type: none;
     margin-top: 50px;
     margin-left: 10px;
     text-align: center;
+    cursor: pointer;
 }
 
 /* changes cursor to pointer when hovering over the features */
 .droplist{
     margin-left: 5px;
     cursor: pointer;
+    background-color: gray;
+    border: solid 1px cyan;
+    border-radius: 5px;
+    padding: 0;
 }
+
+/* positions the dropdown list */
+.themes-dropdown {
+    position: absolute;
+    display: inline-block;
+    left: 75px;
+    top: 5px;
+}
+
+/* styles the dropdown button */
+.themes-dropdown-button {
+    padding: 10px 20px;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* changes the color of the button when hovered */
+.themes-dropdown-button:hover {
+    background-color: rgb(106, 104, 104);
+}
+
+/* hides the lists and styles them */
+#dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: gray;
+    border: 1px solid black;
+    z-index: 1000;
+}
+
+/* style for the sublists */
+.theme-option {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: black; /* Default text color */
+}
+
+/* changes the color of the sublists when hovered */
+.theme-option:hover {
+    background-color: lightgrey; /* Hover effect */
+}
+
 
 /* positions the text on the center */
 #hdropbutton{
@@ -179,9 +236,9 @@ transform: scale(1.5);
 header, main, footer {
     position: relative;
     z-index: 1;
+}
 
 /* container for recommended videos*/
-}
 #morevidscontainer {
     width: 500px;              
     height: 225px;             
