@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="regisstyle.css"> <!-- Optional: Link to CSS for styling -->
+</head>
+<body>
+    <a href="index.html"><img src="home.png" alt="home" class="home-button"></a>
+    <h1>Sign In</h1>
+    <form id="signinForm">
+        <label for="usernameOrEmail">Username or Email:</label>
+        <input type="text" id="usernameOrEmail" name="usernameOrEmail" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+
+    <div id="error-message" style="display: none; color: red;"></div> <!-- Hidden error message div -->
+
+    <!-- Admin panel (hidden by default) -->
+    <div id="adminPanel" style="display: none;">
+        <h2>Registered Users</h2>
+        <ul id="admin-user-list"></ul>
+        <a href="index.html"><button>Login</button></a> <!-- Same behavior as the form's submit button -->
+    </div>    
+
+    <script src="user.js"></script> <!-- Link to utility functions -->
+    <script src="signin.js"></script> <!-- Link to external JavaScript -->
+</body>
+</html>

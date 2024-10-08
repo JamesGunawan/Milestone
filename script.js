@@ -1,52 +1,110 @@
 // Part for light mode and dark mode
 
 
-// Get references to the <p> element and <a> elements
+// Get references to the <p> element
 const toggleColorElement = document.getElementById('switchmode');
-const linkElements = document.querySelectorAll('a');
 
-// Initialize a variable to track the background color state
+// Initialize variables to track the background color state and theme
 let isBlack = false;
-let currentTheme = 'default'; // Track the current theme
 
-// Function to toggle the background color and <a> elements class
+// Function to toggle the background color and classes for all elements
 function toggleBackgroundColor() {
-    if (isBlack) {
-        document.documentElement.style.backgroundColor = 'white'; // Change background color to white
+    const loggedInUser = sessionStorage.getItem('currentUsername');
+    if (loggedInUser) {
+        // Save preferences only if user is logged in
+        if (isBlack) {
+            document.documentElement.style.backgroundColor = 'white'; // Change background color to white
+            document.documentElement.style.color = 'black'; // Change text color to black
+            toggleColorElement.textContent = 'Switch to Dark Mode';
 
-        // Change text color to black ONLY when the current theme is default
-        if (currentTheme === 'default') {
-            document.documentElement.style.color = 'black'; // Default text color
+            // Apply light mode classes to all elements
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.remove('dark-mode');
+                element.classList.add('light-mode');
+            });
+
+            // Save light mode preference
+            localStorage.setItem('isBlack', 'false');
+        } else {
+            document.documentElement.style.backgroundColor = 'black'; // Change background color to black
+            document.documentElement.style.color = 'white'; // Change text color to white
+            toggleColorElement.textContent = 'Switch to Light Mode';
+
+            // Apply dark mode classes to all elements
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.remove('light-mode');
+                element.classList.add('dark-mode');
+            });
+
+            // Save dark mode preference
+            localStorage.setItem('isBlack', 'true');
         }
-
-        toggleColorElement.textContent = 'Switch to Dark Mode';
-
-        // Remove dark mode class and add light mode class
-        linkElements.forEach(element => {
-            element.classList.remove('dark-mode');
-            element.classList.add('light-mode');
-        });
     } else {
-        document.documentElement.style.backgroundColor = 'black'; // Change background color back to black
-
-        // Change text color to white ONLY when the current theme is default
-        if (currentTheme === 'default') {
-            document.documentElement.style.color = 'white'; // Default text color
+        // Default behavior when not logged in (no saving)
+        if (isBlack) {
+            document.documentElement.style.backgroundColor = 'white';
+            document.documentElement.style.color = 'black'; // Change text color to black
+            toggleColorElement.textContent = 'Switch to Dark Mode';
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.remove('dark-mode');
+                element.classList.add('light-mode');
+            });
+        } else {
+            document.documentElement.style.backgroundColor = 'black';
+            document.documentElement.style.color = 'white'; // Change text color to white
+            toggleColorElement.textContent = 'Switch to Light Mode';
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.remove('light-mode');
+                element.classList.add('dark-mode');
+            });
         }
-
-        toggleColorElement.textContent = 'Switch to Light Mode';
-
-        // Remove light mode class and add dark mode class
-        linkElements.forEach(element => {
-            element.classList.remove('light-mode');
-            element.classList.add('dark-mode');
-        });
     }
     isBlack = !isBlack; // Toggle the state
 }
 
+// Check localStorage for saved mode on page load, but only if user is logged in
+window.addEventListener('load', () => {
+    const loggedInUser = sessionStorage.getItem('currentUsername');
+    if (loggedInUser) {
+        const savedMode = localStorage.getItem('isBlack');
+
+        if (savedMode === 'true') {
+            isBlack = true; // Keep it in sync for toggling later
+            document.documentElement.style.backgroundColor = 'black';
+            document.documentElement.style.color = 'white'; // Change text color to white
+            toggleColorElement.textContent = 'Switch to Light Mode';
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.remove('light-mode');
+                element.classList.add('dark-mode');
+            });
+        } else {
+            isBlack = false;
+            document.documentElement.style.backgroundColor = 'white';
+            document.documentElement.style.color = 'black'; // Change text color to black
+            toggleColorElement.textContent = 'Switch to Dark Mode';
+            document.querySelectorAll('*').forEach(element => {
+                element.classList.remove('dark-mode');
+                element.classList.add('light-mode');
+            });
+        }
+    } else {
+        // Use default settings if no user is logged in
+        isBlack = false;
+        document.documentElement.style.backgroundColor = 'white';
+        document.documentElement.style.color = 'black'; // Change text color to black
+        toggleColorElement.textContent = 'Switch to Dark Mode';
+        document.querySelectorAll('*').forEach(element => {
+            element.classList.remove('dark-mode');
+            element.classList.add('light-mode');
+        });
+    }
+});
+
 // Add click event listener to the <p> element
 toggleColorElement.addEventListener('click', toggleBackgroundColor);
+
+
+
 
 
 // Part for video autoplay settings
@@ -61,28 +119,49 @@ let isAutoplay = false;
 let isMuted = true; // Initially set to mute
 
 // Function to toggle both autoplay and mute
+// Function to directly set autoplay and mute based on saved settings
+function setAutoplayAndMute() {
+    const autoplayParam = isAutoplay ? '1' : '0';
+    const muteParam = isMuted ? '1' : '0';
+    // Get the current video ID from the main video iframe
+    const videoId = mainVideo.getAttribute('data-video-id');
+    // Update iframe src to reflect changes in autoplay and mute settings
+    const newSrc = `https://www.youtube.com/embed/${videoId}?autoplay=${autoplayParam}&mute=${muteParam}`;
+    mainVideo.src = newSrc;
+    // Update the text content of the autoplay element to reflect the new state
+    autoplayElement.textContent = `Video Autoplay: ${isAutoplay ? 'On' : 'Off'}`;
+}
+// Load saved autoplay and mute settings from localStorage on page load
+window.addEventListener('load', () => {
+    const savedAutoplay = localStorage.getItem('isAutoplay');
+    const savedMute = localStorage.getItem('isMuted');
+    // Set isAutoplay and isMuted based on local storage
+    isAutoplay = savedAutoplay === 'true';
+    isMuted = savedMute === 'true';
+    // Directly apply the saved settings without toggling
+    setAutoplayAndMute();
+});
+// Function to toggle both autoplay and mute and save the settings
 function toggleAutoplayAndMute() {
     // Toggle autoplay state
     isAutoplay = !isAutoplay;
     const autoplayParam = isAutoplay ? '1' : '0';
-
+    // Save autoplay preference
+    localStorage.setItem('isAutoplay', isAutoplay);
     // Toggle mute state
     isMuted = !isMuted;
     const muteParam = isMuted ? '1' : '0';
-
-    // Get the current video ID from the main video iframe
-    const videoId = mainVideo.getAttribute('data-video-id');
-
+    // Save mute preference
+    localStorage.setItem('isMuted', isMuted);
     // Update iframe src to reflect changes in autoplay and mute settings
+    const videoId = mainVideo.getAttribute('data-video-id');
     const newSrc = `https://www.youtube.com/embed/${videoId}?autoplay=${autoplayParam}&mute=${muteParam}`;
     mainVideo.src = newSrc;
-
     // Update the text content of the autoplay element to reflect the new state
     autoplayElement.textContent = `Video Autoplay: ${isAutoplay ? 'On' : 'Off'}`;
 }
-
 // Add a click event listener to the autoplay element
-autoplayElement.addEventListener('click', toggleAutoplayAndMute);
+autoplayElement.addEventListener('click', toggleAutoplayAndMute); 
 
 
 // Part for themes
@@ -106,9 +185,9 @@ function toggleDropdown() {
     }
 }
 
-// Function to change the theme
 function changeTheme(theme) {
     currentTheme = theme; // Update the current theme
+    localStorage.setItem('currentTheme', theme);
 
     switch (theme) {
         case 'default':
@@ -116,6 +195,7 @@ function changeTheme(theme) {
             htmlElement.style.borderColor = 'gold';
             dropdownButton.style.backgroundColor = 'grey'; // Button color for default
             dropdownButton.style.color = 'white'; // Button text color for default
+            dropdownButton.style.fontFamily = "'roboto', sans-serif"; // Button font for default
             htmlElement.style.fontFamily = "'roboto', sans-serif"; // Default font
 
             // Set font and color for main title, more titles, and h4 elements
@@ -136,6 +216,7 @@ function changeTheme(theme) {
             htmlElement.style.borderColor = 'deepskyblue';
             dropdownButton.style.backgroundColor = 'seafoamgreen'; // Button color for ocean
             dropdownButton.style.color = 'white'; // Button text color for ocean
+            dropdownButton.style.fontFamily = "'Lobster', cursive"; // Button font for ocean
             htmlElement.style.fontFamily = "'Lobster', cursive"; // Ocean font
 
             // Set font and color for main title, more titles, and h4 elements
@@ -156,6 +237,7 @@ function changeTheme(theme) {
             htmlElement.style.borderColor = 'brown';
             dropdownButton.style.backgroundColor = 'mossgreen'; // Button color for forest
             dropdownButton.style.color = 'white'; // Button text color for forest
+            dropdownButton.style.fontFamily = "'Raleway', sans-serif"; // Button font for forest
             htmlElement.style.fontFamily = "'Raleway', sans-serif"; // Forest font
 
             // Set font and color for main title, more titles, and h4 elements
@@ -176,6 +258,7 @@ function changeTheme(theme) {
             htmlElement.style.borderColor = 'black';
             dropdownButton.style.backgroundColor = 'black'; // Button color for Halloween
             dropdownButton.style.color = 'orange'; // Button text color for Halloween
+            dropdownButton.style.fontFamily = "'Creepster', cursive"; // Button font for Halloween
             htmlElement.style.fontFamily = "'Creepster', cursive"; // Halloween font
 
             // Set font and color for main title, more titles, and h4 elements
@@ -196,6 +279,7 @@ function changeTheme(theme) {
             htmlElement.style.borderColor = 'white';
             dropdownButton.style.backgroundColor = 'blue'; // Button color for winter
             dropdownButton.style.color = 'white'; // Button text color for winter
+            dropdownButton.style.fontFamily = "'Snowburst One', cursive"; // Button font for winter
             htmlElement.style.fontFamily = "'Snowburst One', cursive"; // Winter font
 
             // Set font and color for main title, more titles, and h4 elements
@@ -214,10 +298,11 @@ function changeTheme(theme) {
 
     // Ensure text color follows the theme
     if (isBlack) {
-        document.documentElement.style.color = (theme === 'default') ? 'white' : document.documentElement.style.color;
+        document.documentElement.style.color = 'white'; // Dark mode text color
     } else {
         document.documentElement.style.color = (theme === 'default') ? 'black' : document.documentElement.style.color;
     }
+
 }
 
 // Add click event listeners to each theme option
@@ -240,7 +325,35 @@ window.addEventListener('click', function (event) {
     }
 });
 
+// Load saved theme and apply it first
+const savedTheme = localStorage.getItem('currentTheme');
+if (savedTheme) {
+    changeTheme(savedTheme);
+}
+
+// Then apply dark/light mode based on saved preferences
+const savedMode = localStorage.getItem('isBlack');
+if (savedMode === 'true') {
+    isBlack = true;
+    document.documentElement.style.backgroundColor = 'black';
+    toggleColorElement.textContent = 'Switch to Light Mode';
+    linkElements.forEach(element => {
+        element.classList.remove('light-mode');
+        element.classList.add('dark-mode');
+    });
+} else {
+    isBlack = false;
+    document.documentElement.style.backgroundColor = 'white';
+    toggleColorElement.textContent = 'Switch to Dark Mode';
+    linkElements.forEach(element => {
+        element.classList.remove('dark-mode');
+        element.classList.add('light-mode');
+    });
+}
+
+
 // Part for displaying categories
+
 
 // Changes the looks of the categories when clicked
 const Hdrop = document.getElementById("hdropbutton");
@@ -257,7 +370,6 @@ function DisplayCategories() {
 
 // Event listener to display categories when clicked
 Hdrop.addEventListener("click", DisplayCategories);
-
 
 
 // Part for displaying description
@@ -326,3 +438,5 @@ const thumbnails = document.querySelectorAll('#morevidscontainer a');
 thumbnails.forEach(thumbnail => {
     thumbnail.addEventListener('click', handleThumbnailClick);
 });
+
+

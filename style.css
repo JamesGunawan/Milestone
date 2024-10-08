@@ -8,6 +8,11 @@ html{
     width: auto;
 }
 
+html.dark-mode {
+    background-color: black;
+    color: white;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -27,6 +32,8 @@ a.light-mode {
 a.dark-mode {
     color: #fff;
 }
+
+
 
 /* self explanatory */
 .center{
@@ -211,6 +218,67 @@ transform: scale(1.5);
     text-decoration: none;
 }
 
+.signin {
+    position: absolute;
+    padding: 5px;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    top: -10;
+    right: 25;
+}
+
+.signup {
+    position: absolute;
+    padding: 5px;
+    background-color: gray;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    top: -10;
+    right: 100;
+}
+
+.user-icon {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgb(240, 240, 240);
+    position: absolute;
+    top: -15;
+    left: -145;
+}
+
+.user-menu {
+    background-color: white;
+    border: 1px solid #ccc;
+    width: 100px;
+    padding: 10px;
+    position: absolute;
+    top: 35px; /* Adjust to position below the user icon */
+    right: 20; /* Adjust based on your layout */
+    z-index: 1000;
+}
+
+/* Remove default arrow from <summary> */
+summary {
+    list-style: none; /* Remove bullet/arrow */
+    display: flex; /* Ensures the icon is displayed normally */
+    align-items: center; /* Align content inside <summary> */
+}
+
+summary::-webkit-details-marker {
+    display: none; /* Hide the default arrow in WebKit browsers (Chrome, Safari, etc.) */
+}
+
+summary::marker {
+    display: none; /* Hide the default arrow in Firefox */
+}
+
 /* background image for the entire page */
 .background-wrapper {
     position: relative;
@@ -298,4 +366,3 @@ header, main, footer {
     margin-top: 5px;
     font-family: 'Roboto', sans-serif;
 }
-

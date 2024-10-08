@@ -1,5 +1,6 @@
 <html>
 <head>
+    <title>Youtube Video</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet">
@@ -12,8 +13,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&display=swap" rel="stylesheet">
     <!-- Winter Theme fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Snowburst+One&family=Dancing+Script&display=swap" rel="stylesheet">
-
-    <title>Document</title>
 </head>
 <body>
     <!-- Background class for reduced opacity and placed behind all of the main items -->
@@ -44,6 +43,17 @@
                         </details>
                     </div>
                     
+                    <a href="signin.html"><h5 class="signin"> Sign in </h5></a>
+                    <a href="signup.html"><h5 class="signup"> Sign up </h5></a>
+                    <details class="user-menu-details" style="position: relative;">
+                        <summary>
+                            <img src="user-icon.png" alt="user icon" class="user-icon" style="cursor: pointer;">
+                        </summary>
+                        <div class="user-menu">
+                            <p id="username-display"></p> <!-- Username will be displayed dynamically -->
+                            <button id="signOutButton">Sign Out</button>
+                        </div>
+                    </details>
                     
                     <form id="searchform"></form>
                     <!-- Creates a search bar and a button to click on so the user can search (doesn't actually work yet because it is too complex to do for now) -->
@@ -157,7 +167,8 @@
     </div>
     
     <footer>
-        <script src="script.js"></script>
     </footer>
+    <script src="script.js"></script>
+    <script src="user.js"></script>
 </body>
 </html>
